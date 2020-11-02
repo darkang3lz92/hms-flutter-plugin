@@ -136,8 +136,8 @@ final class MapController
                 mapView.onPause();
                 break;
             case HmsMap.RESUMED:
-                mapView.onCreate(null);
-                mapView.onStart();
+//                 mapView.onCreate(null);
+//                 mapView.onStart();
                 mapView.onResume();
                 break;
             case HmsMap.STARTED:
