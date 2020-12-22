@@ -92,13 +92,13 @@ public class FlutterHmsInstanceId {
                 }
                 token = HmsInstanceId.getInstance(PushPlugin.getContext()).getToken(appId, defaultScope);
                 hmsLogger.sendSingleEvent("getToken");
-                Utils.sendIntentLocal(PushIntent.TOKEN_INTENT_ACTION, PushIntent.TOKEN, token);
+                Utils.sendIntent(PushIntent.TOKEN_INTENT_ACTION, PushIntent.TOKEN, token);
             } catch (ApiException e) {
                 hmsLogger.sendSingleEvent("getToken", String.valueOf(e.getStatusCode()));
-                Utils.sendIntentLocal(PushIntent.TOKEN_INTENT_ACTION, PushIntent.TOKEN_ERROR, e.getLocalizedMessage());
+                Utils.sendIntent(PushIntent.TOKEN_INTENT_ACTION, PushIntent.TOKEN_ERROR, e.getLocalizedMessage());
             } catch (Exception e) {
                 hmsLogger.sendSingleEvent("getToken", Code.RESULT_UNKNOWN.code());
-                Utils.sendIntentLocal(PushIntent.TOKEN_INTENT_ACTION, PushIntent.TOKEN_ERROR, e.getLocalizedMessage());
+                Utils.sendIntent(PushIntent.TOKEN_INTENT_ACTION, PushIntent.TOKEN_ERROR, e.getLocalizedMessage());
             }
         }).start();
     }
@@ -137,13 +137,13 @@ public class FlutterHmsInstanceId {
                 }
                 HmsInstanceId.getInstance(PushPlugin.getContext()).deleteToken(appId, defaultScope);
                 hmsLogger.sendSingleEvent("deleteToken");
-                Utils.sendIntentLocal(PushIntent.TOKEN_INTENT_ACTION, PushIntent.TOKEN_ERROR, Code.RESULT_SUCCESS.code());
+                Utils.sendIntent(PushIntent.TOKEN_INTENT_ACTION, PushIntent.TOKEN_ERROR, Code.RESULT_SUCCESS.code());
             } catch (ApiException e) {
                 hmsLogger.sendSingleEvent("deleteToken", String.valueOf(e.getStatusCode()));
-                Utils.sendIntentLocal(PushIntent.TOKEN_INTENT_ACTION, PushIntent.TOKEN_ERROR, e.getLocalizedMessage());
+                Utils.sendIntent(PushIntent.TOKEN_INTENT_ACTION, PushIntent.TOKEN_ERROR, e.getLocalizedMessage());
             } catch (Exception e) {
                 hmsLogger.sendSingleEvent("deleteToken", Code.RESULT_UNKNOWN.code());
-                Utils.sendIntentLocal(PushIntent.TOKEN_INTENT_ACTION, PushIntent.TOKEN_ERROR, e.getLocalizedMessage());
+                Utils.sendIntent(PushIntent.TOKEN_INTENT_ACTION, PushIntent.TOKEN_ERROR, e.getLocalizedMessage());
             }
         }).start();
     }

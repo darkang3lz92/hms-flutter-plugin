@@ -47,14 +47,14 @@ public class FlutterHmsMessageService extends HmsMessageService {
         super.onNewToken(token);
         HMSLogger.getInstance(PushPlugin.getContext()).sendPeriodicEvent("onNewToken");
         Log.d(TAG, "Token received");
-        Utils.sendIntentLocal(PushIntent.TOKEN_INTENT_ACTION, PushIntent.TOKEN, token);
+        Utils.sendIntent(PushIntent.TOKEN_INTENT_ACTION, PushIntent.TOKEN, token);
     }
 
     @Override
     public void onTokenError(Exception e) {
         super.onTokenError(e);
         HMSLogger.getInstance(PushPlugin.getContext()).sendPeriodicEvent("onTokenError");
-        Utils.sendIntentLocal(PushIntent.TOKEN_INTENT_ACTION, PushIntent.TOKEN_ERROR, "Token Error: " + e.getMessage());
+        Utils.sendIntent(PushIntent.TOKEN_INTENT_ACTION, PushIntent.TOKEN_ERROR, "Token Error: " + e.getMessage());
     }
 
     /**

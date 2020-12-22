@@ -38,16 +38,16 @@ public class RemoteMessageCustomIntentStreamHandler implements EventChannel.Stre
     @Override
     public void onListen(Object arguments, EventChannel.EventSink events) {
         rmNotificationIntentBroadcastReceiver = createRemoteMessageEventBroadcastReceiver(events);
-        context.registerReceiver(rmNotificationIntentBroadcastReceiver,
-                new IntentFilter(PushIntent.REMOTE_MESSAGE_NOTIFICATION_INTENT_ACTION.id()));
-        // LocalBroadcastManager.getInstance(context).registerReceiver(rmNotificationIntentBroadcastReceiver,
-        // new IntentFilter(PushIntent.TOKEN_INTENT_ACTION.id()));
+        // context.registerReceiver(rmNotificationIntentBroadcastReceiver,
+        //         new IntentFilter(PushIntent.REMOTE_MESSAGE_NOTIFICATION_INTENT_ACTION.id()));
+        LocalBroadcastManager.getInstance(context).registerReceiver(rmNotificationIntentBroadcastReceiver,
+        new IntentFilter(PushIntent.TOKEN_INTENT_ACTION.id()));
     }
 
     @Override
     public void onCancel(Object arguments) {
-        context.unregisterReceiver(rmNotificationIntentBroadcastReceiver);
-        // LocalBroadcastManager.getInstance(context).unregisterReceiver(rmNotificationIntentBroadcastReceiver);
+        // context.unregisterReceiver(rmNotificationIntentBroadcastReceiver);
+        LocalBroadcastManager.getInstance(context).unregisterReceiver(rmNotificationIntentBroadcastReceiver);
     }
 
     private BroadcastReceiver createRemoteMessageEventBroadcastReceiver(final EventChannel.EventSink events) {

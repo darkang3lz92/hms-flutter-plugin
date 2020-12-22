@@ -41,16 +41,16 @@ public class LocalNotificationClickStreamHandler implements EventChannel.StreamH
     @Override
     public void onListen(Object arguments, EventChannel.EventSink events) {
         localNotificationClickEventReceiver = createClickEventReceiver(events);
-        context.registerReceiver(localNotificationClickEventReceiver,
-                new IntentFilter(PushIntent.LOCAL_NOTIFICATION_CLICK_ACTION.id()));
-        // LocalBroadcastManager.getInstance(context).registerReceiver(localNotificationClickEventReceiver,
-        //         new IntentFilter(PushIntent.TOKEN_INTENT_ACTION.id()));
+        // context.registerReceiver(localNotificationClickEventReceiver,
+        //         new IntentFilter(PushIntent.LOCAL_NOTIFICATION_CLICK_ACTION.id()));
+        LocalBroadcastManager.getInstance(context).registerReceiver(localNotificationClickEventReceiver,
+                new IntentFilter(PushIntent.TOKEN_INTENT_ACTION.id()));
     }
 
     @Override
     public void onCancel(Object arguments) {
-        context.unregisterReceiver(localNotificationClickEventReceiver);
-        // LocalBroadcastManager.getInstance(context).unregisterReceiver(localNotificationClickEventReceiver);
+        // context.unregisterReceiver(localNotificationClickEventReceiver);
+        LocalBroadcastManager.getInstance(context).unregisterReceiver(localNotificationClickEventReceiver);
     }
 
     private BroadcastReceiver createClickEventReceiver(final EventChannel.EventSink events) {
