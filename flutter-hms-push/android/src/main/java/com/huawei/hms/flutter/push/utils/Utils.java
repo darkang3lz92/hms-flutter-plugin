@@ -83,7 +83,13 @@ public class Utils {
         Intent intent = new Intent();
         intent.setAction(action.id());
         intent.putExtra(extraName.id(), result);
-        // PushPlugin.getContext().sendBroadcast(intent);
+        PushPlugin.getContext().sendBroadcast(intent);
+    }
+
+    public static void sendIntentLocal(PushIntent action, PushIntent extraName, String result) {
+        Intent intent = new Intent();
+        intent.setAction(action.id());
+        intent.putExtra(extraName.id(), result);
         LocalBroadcastManager.getInstance(PushPlugin.getContext()).sendBroadcast(intent);
     }
 

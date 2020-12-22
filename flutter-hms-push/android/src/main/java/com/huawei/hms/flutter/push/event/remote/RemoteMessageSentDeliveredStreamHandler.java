@@ -39,16 +39,16 @@ public class RemoteMessageSentDeliveredStreamHandler implements StreamHandler {
     @Override
     public void onListen(Object arguments, EventChannel.EventSink events) {
         remoteMsgSentDeliveredEventBroadcastListener = createRemoteMessageEventBroadcastReceiver(events);
-        // context.registerReceiver(remoteMsgSentDeliveredEventBroadcastListener,
-        //         new IntentFilter(PushIntent.REMOTE_MESSAGE_SENT_DELIVERED_ACTION.id()));
-        LocalBroadcastManager.getInstance(context).registerReceiver(remoteMsgSentDeliveredEventBroadcastListener,
-        new IntentFilter(PushIntent.TOKEN_INTENT_ACTION.id()));
+        context.registerReceiver(remoteMsgSentDeliveredEventBroadcastListener,
+                new IntentFilter(PushIntent.REMOTE_MESSAGE_SENT_DELIVERED_ACTION.id()));
+        // LocalBroadcastManager.getInstance(context).registerReceiver(remoteMsgSentDeliveredEventBroadcastListener,
+        // new IntentFilter(PushIntent.TOKEN_INTENT_ACTION.id()));
     }
 
     @Override
     public void onCancel(Object arguments) {
-        // context.unregisterReceiver(remoteMsgSentDeliveredEventBroadcastListener);
-        LocalBroadcastManager.getInstance(context).unregisterReceiver(remoteMsgSentDeliveredEventBroadcastListener);
+        context.unregisterReceiver(remoteMsgSentDeliveredEventBroadcastListener);
+        // LocalBroadcastManager.getInstance(context).unregisterReceiver(remoteMsgSentDeliveredEventBroadcastListener);
     }
 
     private BroadcastReceiver createRemoteMessageEventBroadcastReceiver(final EventChannel.EventSink events) {

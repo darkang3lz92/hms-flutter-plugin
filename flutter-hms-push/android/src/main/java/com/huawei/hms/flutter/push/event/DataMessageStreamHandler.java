@@ -40,16 +40,16 @@ public class DataMessageStreamHandler implements StreamHandler {
     @Override
     public void onListen(Object arguments, EventSink events) {
         dataMessageEventBroadcastReceiver = createDataMessageEventBroadcastReceiver(events);
-        // context.registerReceiver(dataMessageEventBroadcastReceiver,
-        //         new IntentFilter(PushIntent.DATA_MESSAGE_INTENT_ACTION.id()));
-        LocalBroadcastManager.getInstance(context).registerReceiver(dataMessageEventBroadcastReceiver,
-                new IntentFilter(PushIntent.TOKEN_INTENT_ACTION.id()));
+        context.registerReceiver(dataMessageEventBroadcastReceiver,
+                new IntentFilter(PushIntent.DATA_MESSAGE_INTENT_ACTION.id()));
+        // LocalBroadcastManager.getInstance(context).registerReceiver(dataMessageEventBroadcastReceiver,
+        //         new IntentFilter(PushIntent.TOKEN_INTENT_ACTION.id()));
     }
 
     @Override
     public void onCancel(Object arguments) {
-        // context.unregisterReceiver(dataMessageEventBroadcastReceiver);
-        LocalBroadcastManager.getInstance(context).unregisterReceiver(dataMessageEventBroadcastReceiver);
+        context.unregisterReceiver(dataMessageEventBroadcastReceiver);
+        // LocalBroadcastManager.getInstance(context).unregisterReceiver(dataMessageEventBroadcastReceiver);
     }
 
     private BroadcastReceiver createDataMessageEventBroadcastReceiver(final EventSink events) {
