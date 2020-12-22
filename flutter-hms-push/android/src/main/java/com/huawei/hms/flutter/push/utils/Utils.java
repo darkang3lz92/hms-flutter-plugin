@@ -81,10 +81,10 @@ public class Utils {
 
     public static void sendIntent(PushIntent action, PushIntent extraName, String result) {
         Intent intent = new Intent();
+        intent.setPackage(PushPlugin.getContext().getPackageName());
         intent.setAction(action.id());
         intent.putExtra(extraName.id(), result);
-        // PushPlugin.getContext().sendBroadcast(intent);
-        LocalBroadcastManager.getInstance(PushPlugin.getContext()).sendBroadcast(intent);
+        PushPlugin.getContext().sendBroadcast(intent);
     }
 
 }

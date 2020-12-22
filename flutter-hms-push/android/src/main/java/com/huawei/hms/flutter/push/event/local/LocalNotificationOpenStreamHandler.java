@@ -20,8 +20,6 @@ import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.IntentFilter;
 
-import androidx.localbroadcastmanager.content.LocalBroadcastManager;
-
 import com.huawei.hms.flutter.push.constants.PushIntent;
 import com.huawei.hms.flutter.push.receiver.common.NotificationOpenEventReceiver;
 
@@ -45,16 +43,13 @@ public class LocalNotificationOpenStreamHandler implements EventChannel.StreamHa
     @Override
     public void onListen(Object arguments, EventChannel.EventSink events) {
         localNotificationOpenEventReceiver = createOpenEventReceiver(events);
-        // context.registerReceiver(localNotificationOpenEventReceiver,
-        //         new IntentFilter(PushIntent.NOTIFICATION_OPEN_ACTION.id()));
-        LocalBroadcastManager.getInstance(context).registerReceiver(localNotificationOpenEventReceiver,
-                new IntentFilter(PushIntent.TOKEN_INTENT_ACTION.id()));
+        context.registerReceiver(localNotificationOpenEventReceiver,
+                new IntentFilter(PushIntent.NOTIFICATION_OPEN_ACTION.id()));
     }
 
     @Override
     public void onCancel(Object arguments) {
-        // context.unregisterReceiver(localNotificationOpenEventReceiver);
-        LocalBroadcastManager.getInstance(context).unregisterReceiver(localNotificationOpenEventReceiver);
+        context.unregisterReceiver(localNotificationOpenEventReceiver);
     }
 
     private BroadcastReceiver createOpenEventReceiver(final EventChannel.EventSink events) {

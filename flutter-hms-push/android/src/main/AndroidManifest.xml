@@ -5,7 +5,7 @@
     <application>
         <service
             android:name="com.huawei.hms.flutter.push.hms.FlutterHmsMessageService"
-            android:exported="false">
+            android:exported="true">
             <intent-filter>
                 <action android:name="com.huawei.push.action.MESSAGING_EVENT" />
             </intent-filter>
