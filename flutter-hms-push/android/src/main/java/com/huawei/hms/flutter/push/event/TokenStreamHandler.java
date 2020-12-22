@@ -20,6 +20,8 @@ import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.IntentFilter;
 
+import androidx.localbroadcastmanager.content.LocalBroadcastManager;
+
 import com.huawei.hms.flutter.push.constants.PushIntent;
 import com.huawei.hms.flutter.push.receiver.TokenReceiver;
 
@@ -38,13 +40,16 @@ public class TokenStreamHandler implements StreamHandler {
     @Override
     public void onListen(Object arguments, EventSink events) {
         tokenEventBroadcastReceiver = createTokenEventBroadcastReceiver(events);
-        context.registerReceiver(tokenEventBroadcastReceiver,
+        // context.registerReceiver(tokenEventBroadcastReceiver,
+        //         new IntentFilter(PushIntent.TOKEN_INTENT_ACTION.id()));
+        LocalBroadcastManager.getInstance(context).registerReceiver(tokenEventBroadcastReceiver,
                 new IntentFilter(PushIntent.TOKEN_INTENT_ACTION.id()));
     }
 
     @Override
     public void onCancel(Object arguments) {
-        context.unregisterReceiver(tokenEventBroadcastReceiver);
+        // context.unregisterReceiver(tokenEventBroadcastReceiver);
+        LocalBroadcastManager.getInstance(context).unregisterReceiver(tokenEventBroadcastReceiver);
     }
 
     private BroadcastReceiver createTokenEventBroadcastReceiver(final EventSink events) {
