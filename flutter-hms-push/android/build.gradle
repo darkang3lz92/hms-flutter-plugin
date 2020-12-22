@@ -40,7 +40,6 @@ android {
 }
 
 dependencies {
-    implementation "androidx.localbroadcastmanager:localbroadcastmanager:1.0.0"
     implementation 'com.huawei.hms:push:5.0.2.300'
     implementation 'com.facebook.fresco:fresco:2.2.0'
 }
