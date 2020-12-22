@@ -19,8 +19,6 @@ package com.huawei.hms.flutter.push.utils;
 import android.content.Intent;
 import android.util.Log;
 
-import androidx.localbroadcastmanager.content.LocalBroadcastManager;
-
 import com.huawei.hms.flutter.push.PushPlugin;
 import com.huawei.hms.flutter.push.constants.PushIntent;
 
